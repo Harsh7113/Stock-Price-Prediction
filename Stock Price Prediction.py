@@ -62,7 +62,7 @@ model.add(Dense(25))
 model.add(Dense(1))
 
 model.compile(optimizer="adam",loss="mean_squared_error")
-model.fit(x_train,y_train,batch_size=1,epochs=1)
+model.fit(x_train,y_train,batch_size=1,epochs=5)
 
 #create the testing dataset
 test_data=scaled_data[training_data_len-60:,:]
@@ -145,7 +145,7 @@ future_predictions = []
 #use the last 60 days' data from the original dataset
 last_60_days = scaled_data[-60:]
 
-for _ in range(15):
+for _ in range(5):
     #reshape the data for prediction
     x_test_future = np.array([last_60_days])
     x_test_future = np.reshape(x_test_future, (x_test_future.shape[0], x_test_future.shape[1], 1))
@@ -162,7 +162,7 @@ for _ in range(15):
     #update the last_60_days list for the next iteration
     last_60_days = np.append(last_60_days[1:], predicted_scaled_price, axis=0)
 
-#print the predicted prices for the next 15 days
-print("Predicted prices for the next 15 days:")
+#print the predicted prices for the next 5 days
+print("Predicted prices for the next 5 days:")
 for i, price in enumerate(future_predictions, start=1):
     print(f"Day {i}: {price}")
