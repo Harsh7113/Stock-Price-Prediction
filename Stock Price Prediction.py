@@ -11,7 +11,7 @@ from keras.layers import Dense, LSTM
 plt.style.use("fivethirtyeight")
 
 #get the stock quote
-company = ['AAPL']  #,'AAPL','GOOG']
+company = ['AAPL']
 start = dt.datetime(2013,1,1)
 end =  dt.datetime.today()  
 df = yf.download(company, start , end)
@@ -36,7 +36,6 @@ print("\n")
 #scale the data
 scaler=MinMaxScaler(feature_range=(0,1))
 scaled_data=scaler.fit_transform(dataset)
-#print(scaled_data)
 
 #training dataset
 train_data=scaled_data[0:training_data_len,:]
